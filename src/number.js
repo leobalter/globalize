@@ -1,8 +1,9 @@
 define([
 	"./core",
 	"./number/format",
+	"./number/parse",
 	"./number/pattern"
-], function( Globalize, numberFormat, numberPattern ) {
+], function( Globalize, numberFormat, numberParse, numberPattern ) {
 
 /**
  * .formatNumber( value, pattern )
@@ -38,13 +39,15 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
  *
  * @value [String]
  *
- * @patterns [TBD]
- *
  * Return a Number or null.
  */
 Globalize.parseNumber =
-Globalize.prototype.parseNumber = function( /*value, patterns*/ ) {
-	return null;
+Globalize.prototype.parseNumber = function( value ) {
+	if ( typeof value !== "string" ) {
+		throw new Error( "Value is not a string" );
+	}
+
+	return numberParse( value, this.cldr );
 };
 
 return Globalize;
