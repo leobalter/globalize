@@ -35,6 +35,13 @@ return function( value, pattern, cldr ) {
 	// Transform String into a Number
 	number = +number;
 
+	// Is it a valid number?
+	if ( isNaN( number ) ) {
+
+		// Invalid number.
+		return null;
+	}
+
 	// Percent
 	if ( value[ 0 ].indexOf( "%" ) !== -1 ) {
 		number /= 100;
