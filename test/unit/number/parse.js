@@ -2,19 +2,22 @@ define([
 	"cldr",
 	"globalize/number/parse",
 	"json!fixtures/cldr/main/ar/numbers.json",
+	"json!fixtures/cldr/main/dz/numbers.json",
 	"json!fixtures/cldr/main/en/numbers.json",
 	"json!fixtures/cldr/main/es/numbers.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json"
-], function( Cldr, parse, arNumbers, enNumbers, esNumbers, likelySubtags ) {
+], function( Cldr, parse, arNumbers, dzNumbers, enNumbers, esNumbers, likelySubtags ) {
 
-var ar, en, es;
+var ar, dz, en, es;
 
 Cldr.load( arNumbers );
+Cldr.load( dzNumbers );
 Cldr.load( enNumbers );
 Cldr.load( esNumbers );
 Cldr.load( likelySubtags );
 
 ar = new Cldr( "ar" );
+dz = new Cldr( "dz" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
 
@@ -111,5 +114,16 @@ test( "should parse negative mille", function() {
 	equal( parse( "(1\u2030)", "0\u2030;(0\u2030)", en ), -0.001 );
 	equal( parse( "(1)\u2030", "0\u2030;(0)\u2030", en ), -0.001 );
 });
+
+/**
+ *  Infinite number
+ */
+test( "should parse infinite numbers", function() {
+	equal( parse( "∞", "0", en ), Infinity );
+	equal( parse( "-∞", "0", en ), -Infinity );
+	equal( parse( "(∞)", "0;(0)", en ), -Infinity );
+	equal( parse( "གྲངས་མེད", "0", dz ), Infinity );
+});
+
 
 });
