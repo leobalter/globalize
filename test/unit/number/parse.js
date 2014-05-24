@@ -125,5 +125,14 @@ test( "should parse infinite numbers", function() {
 	equal( parse( "གྲངས་མེད", "0", dz ), Infinity );
 });
 
+/**
+ *  NaN
+ */
+
+test( "should parse invalid numbers as NaN", function() {
+	deepEqual( parse( "invalid", "0", en ), NaN );
+	deepEqual( parse( "NaN", "0", en ), NaN );
+});
+
 
 });

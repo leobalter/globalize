@@ -37,7 +37,7 @@ return function( value, pattern, cldr ) {
 		if ( !value ) {
 
 			// Invalid number.
-			return null;
+			return NaN;
 		}
 
 		prefix = value[ 1 ];
@@ -53,7 +53,7 @@ return function( value, pattern, cldr ) {
 		if ( isNaN( number ) ) {
 
 			// Invalid number.
-			return null;
+			return NaN;
 		}
 
 		// Percent

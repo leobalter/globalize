@@ -39,7 +39,7 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
  *
  * @value [String]
  *
- * Return a Number or null.
+ * Return a Number, Infinite or NaN.
  */
 Globalize.parseNumber =
 Globalize.prototype.parseNumber = function( value ) {
